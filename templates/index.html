@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Compound Search</title>
+    <link rel="stylesheet" href="/static/style-light.css" id="light-theme">
+    <link rel="stylesheet" href="/static/style.css" id="dark-theme" disabled>
+    <script defer src="/static/script.js"></script> <!-- External JS file -->
+</head>
+<body>
+    <header>
+        <canvas id="headerCanvas"></canvas>
+    </header>
+    <div id="scroll-container">
+        <div class="content">
+            <label for="category-selector">Choose a category:</label>
+            <select id="category-selector">
+                <option>Select a category...</option>
+                <option value="Preservatives">Preservatives</option>
+                <option value="Nematicides">Nematicides</option>
+                <option value="Herbicides">Herbicides</option>
+                <option value="Insecticides">Insecticides</option>
+                <option value="Bactericides">Bactericides</option>
+                <option value="Molluscicides">Molluscicides</option>
+                <option value="Acaricides">Acaricides</option>
+                <option value="Fungicides">Fungicides</option>
+                <option value="Rodenticides">Rodenticides</option>
+            </select>
+
+            <label for="compound-selector"><br></br>Choose a compound:</label>
+            <select id="compound-selector" disabled>
+                <option>Select a compound...</option>
+            </select>
+
+            <div id="compound-count"></div>
+            <div id="compound-details"></div>
+
+            <div id="plot-container">
+                <img id="compound-plot" style="display:none;" />
+            </div>
+
+            <!-- Theme toggle button (Button to toggle between light/dark theme) -->
+        <!-- Button to toggle theme -->
+<button id="theme-toggle">
+    <img id="theme-icon" src="/static/sun-icon.png" alt="Theme Toggle">
+</button>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightThemeLink = document.getElementById('light-theme');
+            const darkThemeLink = document.getElementById('dark-theme');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+        
+            // Set the initial theme to 'light' by default
+            lightThemeLink.disabled = false;
+            darkThemeLink.disabled = true;
+            document.body.classList.remove('dark-theme');  // Default to light theme
+            document.body.classList.add('light-theme');
+        
+            // Function to toggle the theme
+            function toggleTheme() {
+                if (darkThemeLink.disabled) {
+                    // Switch to dark theme
+                    lightThemeLink.disabled = true;
+                    darkThemeLink.disabled = false;
+                    document.body.classList.remove('light-theme');
+                    document.body.classList.add('dark-theme');
+                    themeIcon.src = '/static/moon-icon.png';  // Use sun icon for dark theme
+                } else {
+                    // Switch to light theme
+                    lightThemeLink.disabled = false;
+                    darkThemeLink.disabled = true;
+                    document.body.classList.remove('dark-theme');
+                    document.body.classList.add('light-theme');
+                    themeIcon.src = '/static/sun-icon.png';  // Use moon icon for light theme
+                }
+            }
+        
+            // Event listener for the theme toggle button
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        });
+        
+    </script>
+</body>
+</html>
